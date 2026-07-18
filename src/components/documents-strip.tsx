@@ -32,7 +32,7 @@ export function DocumentsStrip({
       title: hasCert ? "CFPM Certificate" : "Add CFPM cert",
       sub: hasCert
         ? `${state.certificate?.filename.slice(0, 22)}...`
-        : "Required for Stop 2",
+        : "needed for step 2",
       icon: ShieldCheck,
       active: hasCert,
       action: onOpenCertificate,
@@ -40,21 +40,21 @@ export function DocumentsStrip({
     {
       key: "products",
       title: `${productsCount || 0} product${productsCount === 1 ? "" : "s"}`,
-      sub: productsCount ? "Recipes captured" : "Told the mentor yet?",
+      sub: productsCount ? "recipes noted" : "tell the mentor",
       icon: ClipboardList,
       active: productsCount > 0,
     },
     {
       key: "profile",
       title: hasProfile ? "Operator profile" : "Operator info",
-      sub: hasProfile ? state.business.legal_name ?? "" : "Chat to fill",
+      sub: hasProfile ? state.business.legal_name ?? "" : "chat to fill in",
       icon: FileText,
       active: hasProfile,
     },
     {
       key: "submit",
       title: hasSubmission ? "Application sent" : "Review & sign",
-      sub: hasSubmission ? "PDF stored locally" : "Available at Stop 4",
+      sub: hasSubmission ? "PDF saved locally" : "available at step 4",
       icon: hasSubmission ? FileText : Plus,
       active: hasSubmission,
       action: onOpenSubmission,
@@ -63,7 +63,7 @@ export function DocumentsStrip({
     {
       key: "bookkeeping",
       title: "Bookkeeping",
-      sub: "Track bakery income & expenses",
+      sub: "track income & expenses",
       icon: BookOpen,
       active: false,
       action: onOpenBookkeeping,
@@ -82,23 +82,23 @@ export function DocumentsStrip({
             onClick={clickable ? s.action : undefined}
             disabled={!clickable}
             className={
-              "flex flex-col items-start gap-2 rounded-2xl bg-white p-4 text-left ring-1 ring-black/5 transition-all " +
+              "flex flex-col items-start gap-2 rounded-2xl bg-paper p-4 text-left ring-1 ring-cta-red/15 transition-all " +
               (clickable ? "hover:-translate-y-0.5 hover:shadow-md cursor-pointer " : "cursor-default ") +
               (s.disabled ? "opacity-40 " : "")
             }
           >
             <span
               className={
-                "flex size-9 items-center justify-center rounded-xl ring-1 ring-black/5 " +
-                (s.active ? "bg-cta-red/10 text-cta-red" : "bg-neutral-50 text-neutral-400")
+                "flex size-9 items-center justify-center rounded-xl ring-1 ring-cta-red/10 " +
+                (s.active ? "bg-cta-red/10 text-cta-red" : "bg-surface text-ink/40")
               }
             >
               <Icon className="size-4" />
             </span>
-            <span className="text-xs font-semibold text-neutral-900">
+            <span className="font-display text-base leading-tight text-ink">
               {s.title}
             </span>
-            <span className="text-[10px] uppercase tracking-wider text-neutral-500 truncate w-full">
+            <span className="font-hand text-base leading-none text-ink/55 truncate w-full">
               {s.sub}
             </span>
           </button>

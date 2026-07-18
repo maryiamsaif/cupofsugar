@@ -43,33 +43,33 @@ function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-surface font-body text-neutral-900 selection:bg-cta-red/15">
+    <div className="min-h-screen bg-surface font-body text-ink selection:bg-cta-red/20">
       {/* Header */}
-      <header className="sticky top-0 z-20 border-b border-neutral-950/5 bg-surface/80 backdrop-blur-md">
+      <header className="sticky top-0 z-20 border-b border-cta-red/15 bg-surface/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="flex size-9 items-center justify-center rounded-md bg-cta-red text-white shadow-sm">
-              <span className="font-display text-2xl font-semibold leading-none">C</span>
+            <div className="flex size-11 items-center justify-center rounded-md bg-paper ring-1 ring-cta-red/25 shadow-[0_2px_0_0_rgba(168,50,71,0.15)] rotate-[-3deg]">
+              <span className="font-hand text-2xl leading-none text-cta-red">c/s</span>
             </div>
             <div>
-              <p className="font-display text-xl font-semibold tracking-wide leading-none">
-                CUP OF SUGAR
+              <p className="font-display text-2xl leading-none tracking-tight text-ink">
+                Cup of Sugar
               </p>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500 mt-1">
-                Chicago Cottage Food · CDPH Guide
+              <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-cta-red/70">
+                A recipe · Passion → Paycheck
               </p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <div className="hidden items-center gap-2 rounded-full bg-white px-3 py-1.5 ring-1 ring-black/5 sm:flex">
+            <div className="hidden items-center gap-2 rounded-full bg-paper px-3 py-1.5 ring-1 ring-cta-red/20 sm:flex">
               <span className="size-2 rounded-full bg-cta-red animate-pulse" />
-              <span className="text-xs font-semibold">The Cup of Sugar Line · Live</span>
+              <span className="text-xs font-semibold text-ink">Kitchen open · Live mentor</span>
             </div>
             <button
               onClick={() => {
-                if (confirm("Start the whole journey over?")) reset();
+                if (confirm("Start the recipe from scratch?")) reset();
               }}
-              className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900"
+              className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium text-neutral-500 hover:bg-paper hover:text-ink"
               title="Reset demo state"
             >
               <RotateCcw className="size-3.5" />
@@ -182,12 +182,12 @@ function StageActionHint(props: {
   if (!cta) return null;
 
   return (
-    <div className="flex items-center justify-between gap-4 rounded-2xl bg-cta-red/5 p-5 ring-1 ring-cta-red/15">
+    <div className="flex items-center justify-between gap-4 rounded-2xl bg-cta-red/5 p-5 ring-1 ring-cta-red/20">
       <div>
-        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-cta-red">
-          Conductor's note · Stop {stage?.id}
+        <p className="font-hand text-xl leading-none text-cta-red">
+          Chef's note · step {stage?.id}
         </p>
-        <p className="mt-1 max-w-[54ch] text-sm text-neutral-800">{body}</p>
+        <p className="mt-2 max-w-[54ch] text-sm text-neutral-800">{body}</p>
       </div>
       <button
         onClick={cta.onClick}

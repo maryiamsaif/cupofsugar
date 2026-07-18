@@ -24,7 +24,7 @@ export function MentorChat({
         parts: [
           {
             type: "text" as const,
-            text: `Good morning! I'm your Cup of Sugar mentor — I've walked plenty of Chicago bakers through this exact ride. We're at **Stop 1: Confirm Eligibility**.\n\nSo tell me — what are you dreaming of selling? A single kind of cookie, a small menu of cakes, sourdough loaves?`,
+            text: `Welcome to the kitchen. I'm your Cup of Sugar mentor — I've helped plenty of Chicago bakers turn a favorite recipe into a real, licensed source of income. We're on **Step 1: Confirm Eligibility**.\n\nSo — what do you love making? A single kind of cookie, a small menu of cakes, sourdough loaves?`,
           },
         ],
       },
@@ -67,20 +67,20 @@ export function MentorChat({
   const stageName = STAGES.find((s) => s.id === stage)?.name ?? "";
 
   return (
-    <div className="flex h-[640px] flex-col rounded-3xl bg-white ring-1 ring-black/5 shadow-sm">
-      <div className="flex items-center justify-between border-b border-neutral-950/5 px-6 py-4">
+    <div className="flex h-[640px] flex-col overflow-hidden rounded-3xl bg-paper ring-1 ring-cta-red/15 shadow-sm">
+      <div className="flex items-center justify-between border-b border-cta-red/15 bg-cta-red/5 px-6 py-4">
         <div className="flex items-center gap-3">
-          <span className="flex size-9 items-center justify-center rounded-full bg-cta-red/10 text-cta-red">
+          <span className="flex size-10 items-center justify-center rounded-full bg-cta-red text-white ring-4 ring-paper">
             <Sparkles className="size-4" />
           </span>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-500">
-              Mentor · Stop {stage}
+            <p className="font-hand text-lg leading-none text-cta-red">
+              step {stage} · your mentor
             </p>
-            <p className="font-display text-lg font-medium leading-none">{stageName}</p>
+            <p className="font-display text-xl leading-tight text-ink">{stageName}</p>
           </div>
         </div>
-        <span className="hidden text-xs italic text-neutral-500 sm:inline">
+        <span className="hidden font-hand text-lg text-ink/50 sm:inline">
           one question at a time
         </span>
       </div>
@@ -114,14 +114,14 @@ export function MentorChat({
           sendMessage({ text });
           setInput("");
         }}
-        className="flex items-center gap-2 border-t border-neutral-950/5 p-4"
+        className="flex items-center gap-2 border-t border-cta-red/15 bg-surface/50 p-4"
       >
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={isBusy ? "The mentor is thinking..." : "Type your answer..."}
+          placeholder={isBusy ? "the mentor is thinking..." : "type your answer..."}
           disabled={isBusy}
-          className="flex-1 rounded-full bg-neutral-100 px-5 py-3 text-sm outline-none ring-1 ring-black/5 transition-shadow placeholder:text-neutral-400 focus:ring-2 focus:ring-cta-red/40 disabled:opacity-60"
+          className="flex-1 rounded-full bg-paper px-5 py-3 text-sm outline-none ring-1 ring-cta-red/15 transition-shadow placeholder:text-ink/40 focus:ring-2 focus:ring-cta-red/50 disabled:opacity-60"
         />
         <button
           type="submit"
@@ -164,8 +164,8 @@ function MessageBubble({ message }: { message: { id: string; role: string; parts
 
   return (
     <div className="flex gap-3">
-      <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-cta-red/10 text-[11px] font-bold text-cta-red">
-        C
+      <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-cta-red/10 font-hand text-lg text-cta-red">
+        m
       </div>
       <div className="flex-1 space-y-2">
         <RenderMarkdown text={text} />

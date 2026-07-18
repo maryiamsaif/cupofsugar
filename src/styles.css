@@ -5,12 +5,18 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Barlow Condensed", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "DM Serif Display", ui-serif, Georgia, serif;
   --font-body: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat", ui-serif, cursive;
 
-  --color-cta-red: #ee352e;
-  --color-cta-red-soft: #fbe1e0;
-  --color-surface: #fafaf7;
+  /* Recipe card palette: parchment paper, deep berry ink, kraft, butter */
+  --color-cta-red: #a83247;        /* deep berry — accent / "ink stamp" */
+  --color-cta-red-soft: #f3dde1;
+  --color-surface: #f8f1e2;         /* parchment */
+  --color-paper: #fdf9ee;           /* recipe card white */
+  --color-kraft: #c9a97a;           /* twine / kraft */
+  --color-butter: #f4c05a;          /* butter highlight */
+  --color-ink: #2a231d;             /* soft ink black */
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -88,12 +94,35 @@
   }
   body {
     background-color: var(--color-surface);
-    color: var(--color-foreground);
+    color: var(--color-ink);
     font-family: var(--font-body);
     font-feature-settings: "ss01";
+    /* Subtle paper grain */
+    background-image:
+      radial-gradient(rgba(42, 35, 29, 0.035) 1px, transparent 1px),
+      radial-gradient(rgba(42, 35, 29, 0.02) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
   }
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 }
+
+/* Recipe card — faint ruled lines like an index card */
+@utility recipe-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgba(168, 50, 71, 0.09) 31px,
+    rgba(168, 50, 71, 0.09) 32px
+  );
+}
+
+/* Little red margin line down the left edge of a recipe card */
+@utility recipe-margin {
+  box-shadow: inset 44px 0 0 -42px var(--color-cta-red);
+}
+

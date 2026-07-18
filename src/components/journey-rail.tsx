@@ -12,30 +12,35 @@ export function JourneyRail({
 }) {
   return (
     <div className="sticky top-24">
-      <div className="mb-6">
-        <p className="font-display text-xs uppercase tracking-[0.2em] text-cta-red">
-          The Cupofsugar Line
-        </p>
-        <h1 className="mt-2 font-display text-4xl font-semibold leading-[0.95] tracking-tight text-neutral-950 sm:text-5xl">
-          Your ride to a<br />registered kitchen.
-        </h1>
-        <p className="mt-3 max-w-[38ch] text-pretty text-sm text-neutral-600">
-          Seven stops between "I want to sell my cookies" and your first
-          farmers market. Each one, done right.
-        </p>
-      </div>
+      {/* Recipe card */}
+      <div className="relative rounded-[20px] bg-paper p-7 pb-8 shadow-[0_1px_0_rgba(0,0,0,0.04),0_20px_40px_-24px_rgba(42,35,29,0.25)] ring-1 ring-cta-red/15 recipe-margin">
+        {/* Tape */}
+        <div className="pointer-events-none absolute -top-3 left-10 h-6 w-24 rotate-[-4deg] bg-butter/70 shadow-sm ring-1 ring-black/5" />
+        <div className="pointer-events-none absolute -top-3 right-8 h-6 w-16 rotate-[3deg] bg-butter/70 shadow-sm ring-1 ring-black/5" />
 
-      {/* Vertical Red Line with stations */}
-      <div className="relative pl-2">
-        <div className="absolute left-[19px] top-3 bottom-3 w-[6px] rounded-full bg-neutral-200" />
-        <div
-          className="absolute left-[19px] top-3 w-[6px] rounded-full bg-cta-red transition-[height] duration-700 ease-out"
-          style={{
-            height: `calc(${((Math.min(currentStage, 4) - 1) / 6) * 100}% + 12px)`,
-          }}
-        />
+        <div className="pl-6">
+          <p className="font-hand text-2xl leading-none text-cta-red">
+            from the kitchen of —
+          </p>
+          <h1 className="mt-3 font-display text-[2.6rem] font-normal leading-[1.02] tracking-tight text-ink sm:text-5xl">
+            A Recipe for<br />
+            <em className="italic text-cta-red">Your Kitchen</em><br />
+            Business.
+          </h1>
+          <p className="mt-4 max-w-[36ch] text-pretty text-[15px] leading-relaxed text-ink/70">
+            Seven steps to turn what you love baking into a licensed source of
+            income. No jargon. No missed forms.
+          </p>
 
-        <ul className="relative space-y-5">
+          <div className="mt-6 flex items-center gap-3">
+            <span className="h-px flex-1 bg-cta-red/25" />
+            <span className="font-hand text-lg text-cta-red">the steps</span>
+            <span className="h-px flex-1 bg-cta-red/25" />
+          </div>
+        </div>
+
+        {/* Numbered recipe steps */}
+        <ol className="mt-5 space-y-2.5 pl-6">
           {STAGES.map((s) => {
             const isDone = completed.includes(s.id);
             const isCurrent = s.id === currentStage && s.status === "built";
@@ -46,61 +51,67 @@ export function JourneyRail({
                   type="button"
                   disabled={isLocked}
                   onClick={() => !isLocked && onSelect(s.id)}
-                  className="group flex w-full items-center gap-4 rounded-xl px-2 py-1.5 text-left transition-colors hover:bg-neutral-100 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+                  className={
+                    "group flex w-full items-baseline gap-3 rounded-lg px-2 py-1.5 text-left transition-colors " +
+                    (isLocked
+                      ? "cursor-not-allowed opacity-60"
+                      : "hover:bg-cta-red/5")
+                  }
                 >
                   <span
                     className={
-                      "relative z-10 flex size-11 shrink-0 items-center justify-center rounded-full ring-4 ring-surface transition-all " +
+                      "flex size-8 shrink-0 translate-y-1 items-center justify-center rounded-full font-display text-[15px] transition-all " +
                       (isDone
                         ? "bg-cta-red text-white"
                         : isCurrent
-                          ? "border-[5px] border-cta-red bg-white"
+                          ? "bg-butter text-ink ring-2 ring-cta-red"
                           : isLocked
-                            ? "border-2 border-dashed border-neutral-300 bg-neutral-50 text-neutral-400"
-                            : "border-2 border-neutral-300 bg-white")
+                            ? "bg-transparent text-ink/30 ring-1 ring-dashed ring-ink/25"
+                            : "bg-paper text-ink ring-1 ring-ink/20")
                     }
                   >
                     {isDone ? (
-                      <Check className="size-5" strokeWidth={3} />
+                      <Check className="size-4" strokeWidth={3} />
                     ) : isLocked ? (
-                      <Lock className="size-3.5" />
-                    ) : isCurrent ? (
-                      <span className="size-2.5 rounded-full bg-cta-red" />
+                      <Lock className="size-3" />
                     ) : (
-                      <span className="text-xs font-semibold text-neutral-500">
-                        {s.id}
-                      </span>
-                    )}
-                    {isCurrent && (
-                      <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-cta-red/25" />
+                      s.id
                     )}
                   </span>
                   <span className="flex-1 min-w-0">
-                    <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
-                      Stop {s.id}
-                      {isLocked && " · Coming soon"}
-                      {isDone && " · Verified"}
-                      {isCurrent && " · Now boarding"}
-                    </span>
                     <span
                       className={
-                        "block font-display text-lg font-medium leading-tight " +
-                        (isLocked ? "text-neutral-400" : "text-neutral-900")
+                        "block font-display text-[1.35rem] leading-tight " +
+                        (isLocked ? "text-ink/40" : "text-ink")
                       }
                     >
                       {s.name}
+                      {isCurrent && (
+                        <span className="ml-2 font-hand text-lg font-normal text-cta-red">
+                          ← you're here
+                        </span>
+                      )}
+                    </span>
+                    <span className="mt-0.5 block text-[11px] font-medium uppercase tracking-[0.16em] text-ink/45">
+                      {isLocked
+                        ? "next batch"
+                        : isDone
+                          ? "done · checked off"
+                          : isCurrent
+                            ? "mixing now"
+                            : `step ${s.id}`}
                     </span>
                   </span>
                 </button>
               </li>
             );
           })}
-        </ul>
-      </div>
+        </ol>
 
-      <p className="mt-8 max-w-[36ch] text-xs italic text-neutral-500">
-        Tap any active stop to jump the mentor's conversation to that stage.
-      </p>
+        <p className="mt-6 pl-6 font-hand text-lg leading-snug text-ink/60">
+          tap any step to jump the mentor's chat there.
+        </p>
+      </div>
     </div>
   );
 }
