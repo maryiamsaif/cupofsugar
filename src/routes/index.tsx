@@ -182,12 +182,12 @@ function StageActionHint(props: {
   if (!cta) return null;
 
   return (
-    <div className="flex items-center justify-between gap-4 rounded-2xl bg-cta-red/5 p-5 ring-1 ring-cta-red/15">
+    <div className="flex items-center justify-between gap-4 rounded-2xl bg-cta-red/5 p-5 ring-1 ring-cta-red/20">
       <div>
-        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-cta-red">
-          Conductor's note · Stop {stage?.id}
+        <p className="font-hand text-xl leading-none text-cta-red">
+          Chef's note · step {stage?.id}
         </p>
-        <p className="mt-1 max-w-[54ch] text-sm text-neutral-800">{body}</p>
+        <p className="mt-2 max-w-[54ch] text-sm text-neutral-800">{body}</p>
       </div>
       <button
         onClick={cta.onClick}
