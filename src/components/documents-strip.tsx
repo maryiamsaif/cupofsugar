@@ -15,7 +15,16 @@ export function DocumentsStrip({
   const productsCount = state.products.length;
   const hasProfile = !!state.business.legal_name;
 
-  const slots = [
+  type Slot = {
+    key: string;
+    title: string;
+    sub: string;
+    icon: typeof ShieldCheck;
+    active: boolean;
+    action?: () => void;
+    disabled?: boolean;
+  };
+  const slots: Slot[] = [
     {
       key: "cert",
       title: hasCert ? "CFPM Certificate" : "Add CFPM cert",
@@ -32,7 +41,6 @@ export function DocumentsStrip({
       sub: productsCount ? "Recipes captured" : "Told the mentor yet?",
       icon: ClipboardList,
       active: productsCount > 0,
-      action: undefined,
     },
     {
       key: "profile",
@@ -40,7 +48,6 @@ export function DocumentsStrip({
       sub: hasProfile ? state.business.legal_name ?? "" : "Chat to fill",
       icon: FileText,
       active: hasProfile,
-      action: undefined,
     },
     {
       key: "submit",
@@ -51,7 +58,8 @@ export function DocumentsStrip({
       action: onOpenSubmission,
       disabled: !hasProfile || productsCount === 0,
     },
-  ] as const;
+  ];
+
 
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
