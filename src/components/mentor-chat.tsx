@@ -24,7 +24,7 @@ export function MentorChat({
         parts: [
           {
             type: "text" as const,
-            text: `Good morning! I'm your Cup of Sugar mentor — I've walked plenty of Chicago bakers through this exact ride. We're at **Stop 1: Confirm Eligibility**.\n\nSo tell me — what are you dreaming of selling? A single kind of cookie, a small menu of cakes, sourdough loaves?`,
+            text: `Welcome to the kitchen. I'm your Cup of Sugar mentor — I've helped plenty of Chicago bakers turn a favorite recipe into a real, licensed source of income. We're on **Step 1: Confirm Eligibility**.\n\nSo — what do you love making? A single kind of cookie, a small menu of cakes, sourdough loaves?`,
           },
         ],
       },
