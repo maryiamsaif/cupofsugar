@@ -127,17 +127,17 @@ export function MentorChat({
 
     if (attached) {
       const dataUrl = await fileToDataUrl(attached);
-      await sendMessage({
-        role: "user",
-        parts: [
-          ...(combined ? [{ type: "text" as const, text: combined }] : [{ type: "text" as const, text: "Here's a photo of my ingredients — what do you see?" }]),
-          { type: "file" as const, mediaType: attached.type || "image/jpeg", url: dataUrl },
-        ],
-      });
+      const parts = [
+        { type: "text", text: combined || "Here's a photo of my ingredients — what do you see?" },
+        { type: "file", mediaType: attached.type || "image/jpeg", url: dataUrl },
+      ];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await sendMessage({ role: "user", parts } as any);
       setAttached(null);
     } else {
       await sendMessage({ text: combined });
     }
+
     setInput("");
     setSelectedAllergens(new Set());
   }
