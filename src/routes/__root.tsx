@@ -77,18 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Cupofsugar — Chicago cottage food, one stop at a time" },
+      { title: "Cup of Sugar — A recipe for turning your kitchen into a business" },
       {
         name: "description",
         content:
-          "A warm mentor-baker AI guides Chicago home bakers from 'I want to sell my cookies' to a correctly submitted CDPH cottage food application — themed as a Chicago L-line journey.",
+          "A warm mentor-baker AI walks Chicago home bakers through the recipe: eligibility, certification, and a properly submitted CDPH cottage food application — one ingredient at a time.",
       },
-      { name: "author", content: "Cupofsugar" },
-      { property: "og:title", content: "Cupofsugar — Chicago cottage food, one stop at a time" },
+      { name: "author", content: "Cup of Sugar" },
+      { property: "og:title", content: "Cup of Sugar — A recipe for turning your kitchen into a business" },
       {
         property: "og:description",
         content:
-          "Duolingo meets TurboTax for Chicago's next generation of cottage food bakers.",
+          "Passion into a paycheck, one step at a time. A recipe-card guide to Chicago's cottage food registration.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -100,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Caveat:wght@500;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Caveat:wght@500;700&display=swap",
       },
     ],
   }),
