@@ -98,7 +98,7 @@ export function OnboardingDialog({
             disabled={!cur.value}
             className="rounded-full bg-cta-red px-6 py-2.5 text-sm font-semibold text-white transition-transform active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {step < steps.length - 1 ? "Continue →" : "Board the train"}
+            {step < steps.length - 1 ? "Continue →" : "Start the recipe"}
           </button>
         </div>
       </div>
