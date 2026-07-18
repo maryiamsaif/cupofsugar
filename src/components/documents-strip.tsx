@@ -5,10 +5,12 @@ export function DocumentsStrip({
   state,
   onOpenCertificate,
   onOpenSubmission,
+  onOpenBookkeeping,
 }: {
   state: CupofsugarState;
   onOpenCertificate: () => void;
   onOpenSubmission: () => void;
+  onOpenBookkeeping: () => void;
 }) {
   const hasCert = !!state.certificate;
   const hasSubmission = !!state.submission;
