@@ -44,11 +44,11 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-surface px-4 font-body">
       <div className="max-w-md text-center">
-        <h1 className="font-display text-2xl font-semibold text-neutral-950">
-          The train stopped between stations.
+        <h1 className="font-display text-3xl font-normal text-neutral-950">
+          The dough didn't rise.
         </h1>
         <p className="mt-2 text-sm text-neutral-600">
-          Something went wrong on our end. Try again — your progress is saved.
+          Something went wrong on our end. Try again — your recipe is saved.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -64,7 +64,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             href="/"
             className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-5 py-2.5 text-sm font-semibold text-neutral-900"
           >
-            Back to journey
+            Back to the recipe
           </a>
         </div>
       </div>
