@@ -61,7 +61,7 @@ function Home() {
           <div className="flex items-center gap-3">
             <div className="hidden items-center gap-2 rounded-full bg-white px-3 py-1.5 ring-1 ring-black/5 sm:flex">
               <span className="size-2 rounded-full bg-cta-red animate-pulse" />
-              <span className="text-xs font-semibold">The Cupofsugar Line · Live</span>
+              <span className="text-xs font-semibold">The Cup Of Sugar Line · Live</span>
             </div>
             <button
               onClick={() => {
