@@ -94,12 +94,35 @@
   }
   body {
     background-color: var(--color-surface);
-    color: var(--color-foreground);
+    color: var(--color-ink);
     font-family: var(--font-body);
     font-feature-settings: "ss01";
+    /* Subtle paper grain */
+    background-image:
+      radial-gradient(rgba(42, 35, 29, 0.035) 1px, transparent 1px),
+      radial-gradient(rgba(42, 35, 29, 0.02) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
   }
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 }
+
+/* Recipe card — faint ruled lines like an index card */
+@utility recipe-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgba(168, 50, 71, 0.09) 31px,
+    rgba(168, 50, 71, 0.09) 32px
+  );
+}
+
+/* Little red margin line down the left edge of a recipe card */
+@utility recipe-margin {
+  box-shadow: inset 44px 0 0 -42px var(--color-cta-red);
+}
+
