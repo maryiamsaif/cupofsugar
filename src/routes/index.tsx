@@ -8,6 +8,8 @@ import { OnboardingDialog } from "@/components/onboarding-dialog";
 import { CertificateDialog } from "@/components/certificate-dialog";
 import { SubmissionDialog } from "@/components/submission-dialog";
 import { BookkeepingDialog } from "@/components/bookkeeping-dialog";
+import { PricingDialog } from "@/components/pricing-dialog";
+
 import { useCupofsugarState } from "@/lib/cupofsugar/state";
 import type { StageId } from "@/lib/cupofsugar/stages";
 import { STAGES } from "@/lib/cupofsugar/stages";
@@ -22,6 +24,8 @@ function Home() {
   const [certOpen, setCertOpen] = useState(false);
   const [subOpen, setSubOpen] = useState(false);
   const [bkOpen, setBkOpen] = useState(false);
+  const [priceOpen, setPriceOpen] = useState(false);
+
 
   // Auto-open certificate dialog when the AI marks stage 2 without a cert yet
   useEffect(() => {
@@ -103,7 +107,9 @@ function Home() {
                 onOpenCertificate={() => setCertOpen(true)}
                 onOpenSubmission={() => setSubOpen(true)}
                 onOpenBookkeeping={() => setBkOpen(true)}
+                onOpenPricing={() => setPriceOpen(true)}
               />
+
               <StageActionHint
                 currentStage={state.current_stage}
                 hasCert={!!state.certificate}
@@ -151,6 +157,8 @@ function Home() {
         />
       )}
       {bkOpen && <BookkeepingDialog onClose={() => setBkOpen(false)} />}
+      {priceOpen && <PricingDialog onClose={() => setPriceOpen(false)} />}
+
     </div>
   );
 }
