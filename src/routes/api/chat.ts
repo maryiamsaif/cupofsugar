@@ -64,7 +64,7 @@ export const Route = createFileRoute("/api/chat")({
         const result = streamText({
           model,
           system: buildSystemPrompt({ stage: (body.stage ?? 1) as StageId, state: body.state }),
-          messages: convertToModelMessages(body.messages),
+          messages: await convertToModelMessages(body.messages),
 
           tools,
           stopWhen: stepCountIs(6),
