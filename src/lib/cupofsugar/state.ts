@@ -36,6 +36,8 @@ export type CupofsugarState = {
   onboarding?: {
     products?: string;
     channels?: string;
+    when?: string;
+    email?: string;
     goal?: string;
   };
   business: BusinessProfile;
@@ -45,6 +47,7 @@ export type CupofsugarState = {
   current_stage: StageId;
   stages_completed: StageId[];
 };
+
 
 const KEY = "cupofsugar_state_v1";
 
