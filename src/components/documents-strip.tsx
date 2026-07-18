@@ -1,14 +1,16 @@
-import { ShieldCheck, FileText, Plus, ClipboardList } from "lucide-react";
+import { ShieldCheck, FileText, Plus, ClipboardList, BookOpen } from "lucide-react";
 import type { CupofsugarState } from "@/lib/cupofsugar/state";
 
 export function DocumentsStrip({
   state,
   onOpenCertificate,
   onOpenSubmission,
+  onOpenBookkeeping,
 }: {
   state: CupofsugarState;
   onOpenCertificate: () => void;
   onOpenSubmission: () => void;
+  onOpenBookkeeping: () => void;
 }) {
   const hasCert = !!state.certificate;
   const hasSubmission = !!state.submission;
@@ -58,11 +60,19 @@ export function DocumentsStrip({
       action: onOpenSubmission,
       disabled: !hasProfile || productsCount === 0,
     },
+    {
+      key: "bookkeeping",
+      title: "Bookkeeping",
+      sub: "Track bakery income & expenses",
+      icon: BookOpen,
+      active: false,
+      action: onOpenBookkeeping,
+    },
   ];
 
 
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
       {slots.map((s) => {
         const Icon = s.icon;
         const clickable = !!s.action && !s.disabled;
