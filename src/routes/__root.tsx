@@ -16,19 +16,17 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-surface px-4 font-body">
       <div className="max-w-md text-center">
-        <p className="font-display text-xs uppercase tracking-[0.2em] text-cta-red">
-          Off the map
-        </p>
-        <h1 className="mt-3 font-display text-6xl font-semibold text-neutral-950">404</h1>
+        <p className="font-hand text-2xl text-cta-red">off recipe</p>
+        <h1 className="mt-1 font-display text-6xl font-normal text-neutral-950">404</h1>
         <p className="mt-2 text-sm text-neutral-600">
-          That stop isn't on the Cupofsugar Line. Let's get you back on the train.
+          That page isn't in this cookbook. Let's flip back to the front.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-full bg-cta-red px-5 py-2.5 text-sm font-semibold text-white"
           >
-            Return to your journey
+            Back to the recipe
           </Link>
         </div>
       </div>
