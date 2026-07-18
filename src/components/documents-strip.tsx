@@ -1,4 +1,4 @@
-import { ShieldCheck, FileText, Plus, ClipboardList } from "lucide-react";
+import { ShieldCheck, FileText, Plus, ClipboardList, BookOpen } from "lucide-react";
 import type { CupofsugarState } from "@/lib/cupofsugar/state";
 
 export function DocumentsStrip({
