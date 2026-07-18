@@ -32,7 +32,7 @@ export function DocumentsStrip({
       title: hasCert ? "CFPM Certificate" : "Add CFPM cert",
       sub: hasCert
         ? `${state.certificate?.filename.slice(0, 22)}...`
-        : "Required for Stop 2",
+        : "needed for step 2",
       icon: ShieldCheck,
       active: hasCert,
       action: onOpenCertificate,
@@ -40,21 +40,21 @@ export function DocumentsStrip({
     {
       key: "products",
       title: `${productsCount || 0} product${productsCount === 1 ? "" : "s"}`,
-      sub: productsCount ? "Recipes captured" : "Told the mentor yet?",
+      sub: productsCount ? "recipes noted" : "tell the mentor",
       icon: ClipboardList,
       active: productsCount > 0,
     },
     {
       key: "profile",
       title: hasProfile ? "Operator profile" : "Operator info",
-      sub: hasProfile ? state.business.legal_name ?? "" : "Chat to fill",
+      sub: hasProfile ? state.business.legal_name ?? "" : "chat to fill in",
       icon: FileText,
       active: hasProfile,
     },
     {
       key: "submit",
       title: hasSubmission ? "Application sent" : "Review & sign",
-      sub: hasSubmission ? "PDF stored locally" : "Available at Stop 4",
+      sub: hasSubmission ? "PDF saved locally" : "available at step 4",
       icon: hasSubmission ? FileText : Plus,
       active: hasSubmission,
       action: onOpenSubmission,
@@ -63,7 +63,7 @@ export function DocumentsStrip({
     {
       key: "bookkeeping",
       title: "Bookkeeping",
-      sub: "Track bakery income & expenses",
+      sub: "track income & expenses",
       icon: BookOpen,
       active: false,
       action: onOpenBookkeeping,
