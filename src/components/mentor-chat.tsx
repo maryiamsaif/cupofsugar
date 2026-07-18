@@ -114,14 +114,14 @@ export function MentorChat({
           sendMessage({ text });
           setInput("");
         }}
-        className="flex items-center gap-2 border-t border-neutral-950/5 p-4"
+        className="flex items-center gap-2 border-t border-cta-red/15 bg-surface/50 p-4"
       >
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={isBusy ? "The mentor is thinking..." : "Type your answer..."}
+          placeholder={isBusy ? "the mentor is thinking..." : "type your answer..."}
           disabled={isBusy}
-          className="flex-1 rounded-full bg-neutral-100 px-5 py-3 text-sm outline-none ring-1 ring-black/5 transition-shadow placeholder:text-neutral-400 focus:ring-2 focus:ring-cta-red/40 disabled:opacity-60"
+          className="flex-1 rounded-full bg-paper px-5 py-3 text-sm outline-none ring-1 ring-cta-red/15 transition-shadow placeholder:text-ink/40 focus:ring-2 focus:ring-cta-red/50 disabled:opacity-60"
         />
         <button
           type="submit"
