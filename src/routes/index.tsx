@@ -102,6 +102,7 @@ function Home() {
                 state={state}
                 onOpenCertificate={() => setCertOpen(true)}
                 onOpenSubmission={() => setSubOpen(true)}
+                onOpenBookkeeping={() => setBkOpen(true)}
               />
               <StageActionHint
                 currentStage={state.current_stage}
