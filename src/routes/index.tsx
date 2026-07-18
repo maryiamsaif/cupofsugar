@@ -150,6 +150,7 @@ function Home() {
           }}
         />
       )}
+      {bkOpen && <BookkeepingDialog onClose={() => setBkOpen(false)} />}
     </div>
   );
 }
