@@ -82,23 +82,23 @@ export function DocumentsStrip({
             onClick={clickable ? s.action : undefined}
             disabled={!clickable}
             className={
-              "flex flex-col items-start gap-2 rounded-2xl bg-white p-4 text-left ring-1 ring-black/5 transition-all " +
+              "flex flex-col items-start gap-2 rounded-2xl bg-paper p-4 text-left ring-1 ring-cta-red/15 transition-all " +
               (clickable ? "hover:-translate-y-0.5 hover:shadow-md cursor-pointer " : "cursor-default ") +
               (s.disabled ? "opacity-40 " : "")
             }
           >
             <span
               className={
-                "flex size-9 items-center justify-center rounded-xl ring-1 ring-black/5 " +
-                (s.active ? "bg-cta-red/10 text-cta-red" : "bg-neutral-50 text-neutral-400")
+                "flex size-9 items-center justify-center rounded-xl ring-1 ring-cta-red/10 " +
+                (s.active ? "bg-cta-red/10 text-cta-red" : "bg-surface text-ink/40")
               }
             >
               <Icon className="size-4" />
             </span>
-            <span className="text-xs font-semibold text-neutral-900">
+            <span className="font-display text-base leading-tight text-ink">
               {s.title}
             </span>
-            <span className="text-[10px] uppercase tracking-wider text-neutral-500 truncate w-full">
+            <span className="font-hand text-base leading-none text-ink/55 truncate w-full">
               {s.sub}
             </span>
           </button>
