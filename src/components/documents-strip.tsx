@@ -60,6 +60,14 @@ export function DocumentsStrip({
       action: onOpenSubmission,
       disabled: !hasProfile || productsCount === 0,
     },
+    {
+      key: "bookkeeping",
+      title: "Bookkeeping",
+      sub: "Track bakery income & expenses",
+      icon: BookOpen,
+      active: false,
+      action: onOpenBookkeeping,
+    },
   ];
 
 
