@@ -21,6 +21,7 @@ function Home() {
   const { state, hydrated, update, reset } = useCupofsugarState();
   const [certOpen, setCertOpen] = useState(false);
   const [subOpen, setSubOpen] = useState(false);
+  const [bkOpen, setBkOpen] = useState(false);
 
   // Auto-open certificate dialog when the AI marks stage 2 without a cert yet
   useEffect(() => {
