@@ -53,7 +53,7 @@ function Home() {
             </div>
             <div>
               <p className="font-display text-xl font-semibold tracking-wide leading-none">
-                CUPOFSUGAR
+                CUP OF SUGAR
               </p>
               <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-500 mt-1">
                 Chicago Cottage Food · CDPH Guide
@@ -63,7 +63,7 @@ function Home() {
           <div className="flex items-center gap-3">
             <div className="hidden items-center gap-2 rounded-full bg-white px-3 py-1.5 ring-1 ring-black/5 sm:flex">
               <span className="size-2 rounded-full bg-cta-red animate-pulse" />
-              <span className="text-xs font-semibold">The Cup Of Sugar Line · Live</span>
+              <span className="text-xs font-semibold">The Cup of Sugar Line · Live</span>
             </div>
             <button
               onClick={() => {
