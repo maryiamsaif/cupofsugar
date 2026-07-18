@@ -42,23 +42,24 @@ export function OnboardingDialog({
   const cur = steps[step];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-950/40 backdrop-blur-sm">
-      <div className="relative mx-4 w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/10">
-        <div className="h-1.5 w-full bg-neutral-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/40 backdrop-blur-sm">
+      <div className="relative mx-4 w-full max-w-lg overflow-hidden rounded-3xl bg-paper shadow-2xl ring-1 ring-cta-red/20">
+        <div className="pointer-events-none absolute -top-3 left-10 h-6 w-24 rotate-[-4deg] bg-butter/80 shadow-sm ring-1 ring-black/5" />
+        <div className="h-1.5 w-full bg-cta-red/10">
           <div
             className="h-full bg-cta-red transition-all duration-500"
             style={{ width: `${((step + 1) / steps.length) * 100}%` }}
           />
         </div>
 
-        <div className="px-8 pt-8 pb-6">
-          <p className="font-display text-xs uppercase tracking-[0.2em] text-cta-red">
-            All aboard · Step {step + 1} of {steps.length}
+        <div className="px-8 pt-10 pb-6">
+          <p className="font-hand text-xl leading-none text-cta-red">
+            prep · ingredient {step + 1} of {steps.length}
           </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-neutral-950">
+          <h2 className="mt-3 font-display text-4xl leading-tight text-ink">
             {cur.q}
           </h2>
-          <p className="mt-2 text-sm text-neutral-600">{cur.sub}</p>
+          <p className="mt-2 text-sm text-ink/70">{cur.sub}</p>
 
           <div className="mt-6 grid gap-2">
             {cur.options.map((opt) => (
