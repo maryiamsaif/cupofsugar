@@ -7,6 +7,7 @@ import { DocumentsStrip } from "@/components/documents-strip";
 import { OnboardingDialog } from "@/components/onboarding-dialog";
 import { CertificateDialog } from "@/components/certificate-dialog";
 import { SubmissionDialog } from "@/components/submission-dialog";
+import { BookkeepingDialog } from "@/components/bookkeeping-dialog";
 import { useCupofsugarState } from "@/lib/cupofsugar/state";
 import type { StageId } from "@/lib/cupofsugar/stages";
 import { STAGES } from "@/lib/cupofsugar/stages";
