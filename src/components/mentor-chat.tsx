@@ -164,8 +164,8 @@ function MessageBubble({ message }: { message: { id: string; role: string; parts
 
   return (
     <div className="flex gap-3">
-      <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-cta-red/10 text-[11px] font-bold text-cta-red">
-        C
+      <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-cta-red/10 font-hand text-lg text-cta-red">
+        m
       </div>
       <div className="flex-1 space-y-2">
         <RenderMarkdown text={text} />
