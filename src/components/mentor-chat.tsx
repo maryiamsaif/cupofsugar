@@ -67,20 +67,20 @@ export function MentorChat({
   const stageName = STAGES.find((s) => s.id === stage)?.name ?? "";
 
   return (
-    <div className="flex h-[640px] flex-col rounded-3xl bg-white ring-1 ring-black/5 shadow-sm">
-      <div className="flex items-center justify-between border-b border-neutral-950/5 px-6 py-4">
+    <div className="flex h-[640px] flex-col overflow-hidden rounded-3xl bg-paper ring-1 ring-cta-red/15 shadow-sm">
+      <div className="flex items-center justify-between border-b border-cta-red/15 bg-cta-red/5 px-6 py-4">
         <div className="flex items-center gap-3">
-          <span className="flex size-9 items-center justify-center rounded-full bg-cta-red/10 text-cta-red">
+          <span className="flex size-10 items-center justify-center rounded-full bg-cta-red text-white ring-4 ring-paper">
             <Sparkles className="size-4" />
           </span>
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-neutral-500">
-              Mentor · Stop {stage}
+            <p className="font-hand text-lg leading-none text-cta-red">
+              step {stage} · your mentor
             </p>
-            <p className="font-display text-lg font-medium leading-none">{stageName}</p>
+            <p className="font-display text-xl leading-tight text-ink">{stageName}</p>
           </div>
         </div>
-        <span className="hidden text-xs italic text-neutral-500 sm:inline">
+        <span className="hidden font-hand text-lg text-ink/50 sm:inline">
           one question at a time
         </span>
       </div>
