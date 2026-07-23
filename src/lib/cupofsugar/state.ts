@@ -46,7 +46,9 @@ export type CupofsugarState = {
   submission: Submission | null;
   current_stage: StageId;
   stages_completed: StageId[];
+  chatResetKey: number;
 };
+
 
 
 const KEY = "cupofsugar_state_v1";
