@@ -109,9 +109,13 @@ export function useCupofsugarState() {
   }, []);
 
   const reset = useCallback(() => {
-    write(DEFAULT_STATE);
-    setState(DEFAULT_STATE);
+    setState((prev) => {
+      const next: CupofsugarState = { ...DEFAULT_STATE, chatResetKey: (prev.chatResetKey ?? 0) + 1 };
+      write(next);
+      return next;
+    });
   }, []);
+
 
   return { state, hydrated, update, completeStage, reset };
 }
