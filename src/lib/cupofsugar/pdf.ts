@@ -1,5 +1,6 @@
-import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
-import type { CupofsugarState } from "./state";
+import { PDFDocument, StandardFonts, rgb, PDFPage, PDFFont } from "pdf-lib";
+import type { CupofsugarState, SelfCertification } from "./state";
+import { isSelfCertificationComplete } from "./state";
 
 export async function renderApplicationPdf(
   state: CupofsugarState,
