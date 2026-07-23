@@ -167,6 +167,7 @@ export const DEFAULT_STATE: CupofsugarState = {
   business: {},
   products: [],
   certificate: null,
+  selfCertification: { ...DEFAULT_SELF_CERTIFICATION },
   submission: null,
   current_stage: 1,
   stages_completed: [],
