@@ -9,6 +9,7 @@ import { CertificateDialog } from "@/components/certificate-dialog";
 import { SubmissionDialog } from "@/components/submission-dialog";
 import { BookkeepingDialog } from "@/components/bookkeeping-dialog";
 import { PricingDialog } from "@/components/pricing-dialog";
+import { SelfCertificationDialog } from "@/components/self-certification-dialog";
 
 import { useCupofsugarState } from "@/lib/cupofsugar/state";
 import type { StageId } from "@/lib/cupofsugar/stages";
@@ -25,6 +26,8 @@ function Home() {
   const [subOpen, setSubOpen] = useState(false);
   const [bkOpen, setBkOpen] = useState(false);
   const [priceOpen, setPriceOpen] = useState(false);
+  const [checklistOpen, setChecklistOpen] = useState(false);
+
 
 
   // Auto-open certificate dialog when the AI marks stage 2 without a cert yet
@@ -108,7 +111,9 @@ function Home() {
                 onOpenSubmission={() => setSubOpen(true)}
                 onOpenBookkeeping={() => setBkOpen(true)}
                 onOpenPricing={() => setPriceOpen(true)}
+                onOpenChecklist={() => setChecklistOpen(true)}
               />
+
 
               <StageActionHint
                 currentStage={state.current_stage}
@@ -172,6 +177,14 @@ function Home() {
       )}
       {bkOpen && <BookkeepingDialog onClose={() => setBkOpen(false)} />}
       {priceOpen && <PricingDialog onClose={() => setPriceOpen(false)} />}
+      {checklistOpen && (
+        <SelfCertificationDialog
+          initial={state.selfCertification}
+          onClose={() => setChecklistOpen(false)}
+          onCertified={(sc) => update((s) => ({ ...s, selfCertification: sc }))}
+        />
+      )}
+
 
     </div>
   );
