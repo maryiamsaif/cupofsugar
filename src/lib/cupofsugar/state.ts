@@ -61,7 +61,9 @@ export const DEFAULT_STATE: CupofsugarState = {
   submission: null,
   current_stage: 1,
   stages_completed: [],
+  chatResetKey: 0,
 };
+
 
 function read(): CupofsugarState {
   if (typeof window === "undefined") return DEFAULT_STATE;
