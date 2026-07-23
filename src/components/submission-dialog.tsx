@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { X, CheckCircle2, Download, Mail } from "lucide-react";
+import { X, CheckCircle2, Download, Mail, AlertTriangle } from "lucide-react";
 import type { CupofsugarState, Submission } from "@/lib/cupofsugar/state";
+import { isSelfCertificationComplete } from "@/lib/cupofsugar/state";
 import { renderApplicationPdf, bytesToDataUrl } from "@/lib/cupofsugar/pdf";
 
 export function SubmissionDialog({
@@ -30,8 +31,11 @@ export function SubmissionDialog({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signature, state.products.length, state.business.legal_name, state.business.address]);
 
+  const checklistDone = isSelfCertificationComplete(state.selfCertification);
+
   async function handleSubmit() {
     if (!signature.trim()) return;
+    if (!checklistDone) return;
     setSubmitting(true);
     const bytes = await renderApplicationPdf(state, signature.trim());
     const url = bytesToDataUrl(bytes);
