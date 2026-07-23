@@ -218,18 +218,47 @@ export function SelfCertificationDialog({
             <h3 className="font-display text-sm font-semibold uppercase tracking-[0.18em] text-cta-red">
               Chilled and Frozen Foods
             </h3>
-            <label className="mt-3 flex items-start gap-3 rounded-2xl bg-neutral-50 p-4 ring-1 ring-black/5">
-              <input
-                type="checkbox"
-                className="mt-1 size-4 accent-cta-red"
-                checked={sc.handles_chilled_or_frozen}
-                onChange={() => toggle("handles_chilled_or_frozen")}
-              />
-              <span className="text-sm text-neutral-800">
+            <div className="mt-3 rounded-2xl bg-neutral-50 p-4 ring-1 ring-black/5">
+              <p className="text-sm text-neutral-800">
                 Do you prepare any foods or use any ingredients that require
                 refrigeration or freezing?
-              </span>
-            </label>
+              </p>
+              <div className="mt-3 flex gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setSc((p) => ({ ...p, handles_chilled_or_frozen: false }))
+                  }
+                  className={
+                    "rounded-full px-4 py-1.5 text-xs font-semibold ring-1 transition-colors " +
+                    (!sc.handles_chilled_or_frozen
+                      ? "bg-cta-red text-white ring-cta-red"
+                      : "bg-white text-neutral-700 ring-black/10 hover:bg-neutral-100")
+                  }
+                >
+                  No — skip this section
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setSc((p) => ({ ...p, handles_chilled_or_frozen: true }))
+                  }
+                  className={
+                    "rounded-full px-4 py-1.5 text-xs font-semibold ring-1 transition-colors " +
+                    (sc.handles_chilled_or_frozen
+                      ? "bg-cta-red text-white ring-cta-red"
+                      : "bg-white text-neutral-700 ring-black/10 hover:bg-neutral-100")
+                  }
+                >
+                  Yes
+                </button>
+              </div>
+              <p className="mt-2 text-[11px] italic text-neutral-500">
+                {sc.handles_chilled_or_frozen
+                  ? "Certify the three temperature items below."
+                  : "This section is optional — you can save certification without checking any items here."}
+              </p>
+            </div>
             {sc.handles_chilled_or_frozen && (
               <div className="mt-3 space-y-2">
                 {CHILLED.map((it) => (
@@ -238,6 +267,7 @@ export function SelfCertificationDialog({
               </div>
             )}
           </div>
+
 
           <div>
             <h3 className="font-display text-sm font-semibold uppercase tracking-[0.18em] text-cta-red">
