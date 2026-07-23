@@ -230,14 +230,7 @@ export function MentorChat({
       {/* Allergen chips — only show when talking about recipes/ingredients */}
       {(() => {
         const KEYWORDS = ["recipe","ingredient","ingredients","allergen","cup","tsp","tbsp","flour","sugar","butter","egg","batch","dozen","bake","baking","dough","batter"];
-        const lastAssistant = [...messages].reverse().find((m) => m.role === "assistant");
-        const assistantText = lastAssistant
-          ? (lastAssistant.parts as Array<{ type: string; text?: string }>)
-              .filter((p) => p.type === "text")
-              .map((p) => p.text ?? "")
-              .join(" ")
-          : "";
-        const haystack = (input + " " + assistantText).toLowerCase();
+        const haystack = input.toLowerCase();
         const show = KEYWORDS.some((k) => haystack.includes(k));
         if (!show) return null;
         return (
