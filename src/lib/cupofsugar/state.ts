@@ -46,7 +46,9 @@ export type CupofsugarState = {
   submission: Submission | null;
   current_stage: StageId;
   stages_completed: StageId[];
+  chatResetKey: number;
 };
+
 
 
 const KEY = "cupofsugar_state_v1";
@@ -59,7 +61,9 @@ export const DEFAULT_STATE: CupofsugarState = {
   submission: null,
   current_stage: 1,
   stages_completed: [],
+  chatResetKey: 0,
 };
+
 
 function read(): CupofsugarState {
   if (typeof window === "undefined") return DEFAULT_STATE;
@@ -105,9 +109,13 @@ export function useCupofsugarState() {
   }, []);
 
   const reset = useCallback(() => {
-    write(DEFAULT_STATE);
-    setState(DEFAULT_STATE);
+    setState((prev) => {
+      const next: CupofsugarState = { ...DEFAULT_STATE, chatResetKey: (prev.chatResetKey ?? 0) + 1 };
+      write(next);
+      return next;
+    });
   }, []);
+
 
   return { state, hydrated, update, completeStage, reset };
 }

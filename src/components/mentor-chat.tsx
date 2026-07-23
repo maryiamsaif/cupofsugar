@@ -29,20 +29,24 @@ export function MentorChat({
   const stage: StageId = state.current_stage;
 
   const initialMessages = useMemo(
-    () => [
-      {
-        id: "greet",
-        role: "assistant" as const,
-        parts: [
-          {
-            type: "text" as const,
-            text: `Welcome to the kitchen. I'm your Cup of Sugar mentor — a fellow baker, not a suit — and I've helped plenty of folks in Chicago turn a favorite recipe into a real, licensed source of income. We're on **Step 1: Confirm Eligibility**.\n\nWhen you're ready, tell me a bit more about the recipe you have in mind. You can also tap 📎 to send me a photo of your ingredients, or 🎤 to just talk to me.`,
-          },
-        ],
-      },
-    ],
+    () => {
+      const stage1Done = state.stages_completed.includes(1);
+      const product = state.onboarding?.products;
+      const text = stage1Done && product
+        ? `Welcome to the kitchen. I'm your Cup of Sugar mentor — a fellow baker, not a suit. Good news: **${product}** are always allowed under Illinois cottage food law, so **Step 1: Confirm Eligibility** is already checked off. ✅\n\nWe're moving on to **Step 2: Food Handler Certification**. When you're ready, tell me a bit about your setup and I'll point you to a course. You can also tap 📎 to send a photo of your ingredients, or 🎤 to just talk to me.`
+        : `Welcome to the kitchen. I'm your Cup of Sugar mentor — a fellow baker, not a suit — and I've helped plenty of folks in Chicago turn a favorite recipe into a real, licensed source of income. We're on **Step 1: Confirm Eligibility**.\n\nWhen you're ready, tell me a bit more about the recipe you have in mind. You can also tap 📎 to send me a photo of your ingredients, or 🎤 to just talk to me.`;
+      return [
+        {
+          id: "greet",
+          role: "assistant" as const,
+          parts: [{ type: "text" as const, text }],
+        },
+      ];
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
+
 
   const transport = useMemo(
     () =>
@@ -223,28 +227,44 @@ export function MentorChat({
         )}
       </div>
 
-      {/* Allergen chips */}
-      <div className="flex flex-wrap items-center gap-1.5 border-t border-cta-red/10 bg-surface/40 px-4 py-2">
-        <span className="mr-1 font-hand text-base text-ink/60">allergens:</span>
-        {COMMON_ALLERGENS.map((a) => {
-          const on = selectedAllergens.has(a);
-          return (
-            <button
-              key={a}
-              type="button"
-              onClick={() => toggleAllergen(a)}
-              className={
-                "rounded-full px-2.5 py-1 text-xs font-medium ring-1 transition-colors " +
-                (on
-                  ? "bg-cta-red text-white ring-cta-red"
-                  : "bg-paper text-ink/70 ring-cta-red/20 hover:ring-cta-red/50")
-              }
-            >
-              {on ? "✓ " : ""}{a}
-            </button>
-          );
-        })}
-      </div>
+      {/* Allergen chips — only show when talking about recipes/ingredients */}
+      {(() => {
+        const KEYWORDS = ["recipe","ingredient","ingredients","allergen","cup","tsp","tbsp","flour","sugar","butter","egg","batch","dozen","bake","baking","dough","batter"];
+        const lastAssistant = [...messages].reverse().find((m) => m.role === "assistant");
+        const assistantText = lastAssistant
+          ? (lastAssistant.parts as Array<{ type: string; text?: string }>)
+              .filter((p) => p.type === "text")
+              .map((p) => p.text ?? "")
+              .join(" ")
+          : "";
+        const haystack = (input + " " + assistantText).toLowerCase();
+        const show = KEYWORDS.some((k) => haystack.includes(k));
+        if (!show) return null;
+        return (
+          <div className="flex flex-wrap items-center gap-1.5 border-t border-cta-red/10 bg-surface/40 px-4 py-2">
+            <span className="mr-1 font-hand text-base text-ink/60">allergens:</span>
+            {COMMON_ALLERGENS.map((a) => {
+              const on = selectedAllergens.has(a);
+              return (
+                <button
+                  key={a}
+                  type="button"
+                  onClick={() => toggleAllergen(a)}
+                  className={
+                    "rounded-full px-2.5 py-1 text-xs font-medium ring-1 transition-colors " +
+                    (on
+                      ? "bg-cta-red text-white ring-cta-red"
+                      : "bg-paper text-ink/70 ring-cta-red/20 hover:ring-cta-red/50")
+                  }
+                >
+                  {on ? "✓ " : ""}{a}
+                </button>
+              );
+            })}
+          </div>
+        );
+      })()}
+
 
       {attached && (
         <div className="flex items-center gap-3 border-t border-cta-red/10 bg-surface/60 px-4 py-2">
