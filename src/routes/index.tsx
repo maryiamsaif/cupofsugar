@@ -127,10 +127,24 @@ function Home() {
       {!state.onboarded && (
         <OnboardingDialog
           onComplete={(data) =>
-            update((s) => ({ ...s, onboarded: true, onboarding: data }))
+            update((s) => {
+              const allowed = ["Cookies", "Cakes", "Breads", "Muffins & scones"];
+              const isAllowed = data.products && allowed.includes(data.products);
+              const next: typeof s = { ...s, onboarded: true, onboarding: data };
+              if (isAllowed && data.products) {
+                next.products = [
+                  ...s.products,
+                  { name: data.products, category: "allowed", ingredients: [], allergens: [] },
+                ];
+                next.stages_completed = Array.from(new Set([...s.stages_completed, 1 as StageId]));
+                next.current_stage = Math.max(s.current_stage, 2) as StageId;
+              }
+              return next;
+            })
           }
         />
       )}
+
       {certOpen && (
         <CertificateDialog
           onClose={() => setCertOpen(false)}
