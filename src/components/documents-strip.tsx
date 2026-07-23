@@ -1,5 +1,5 @@
-import { ShieldCheck, FileText, Plus, ClipboardList, BookOpen, DollarSign } from "lucide-react";
-import type { CupofsugarState } from "@/lib/cupofsugar/state";
+import { ShieldCheck, FileText, Plus, ClipboardList, BookOpen, DollarSign, ClipboardCheck } from "lucide-react";
+import { isSelfCertificationComplete, type CupofsugarState } from "@/lib/cupofsugar/state";
 
 export function DocumentsStrip({
   state,
@@ -7,17 +7,20 @@ export function DocumentsStrip({
   onOpenSubmission,
   onOpenBookkeeping,
   onOpenPricing,
+  onOpenChecklist,
 }: {
   state: CupofsugarState;
   onOpenCertificate: () => void;
   onOpenSubmission: () => void;
   onOpenBookkeeping: () => void;
   onOpenPricing: () => void;
+  onOpenChecklist: () => void;
 }) {
   const hasCert = !!state.certificate;
   const hasSubmission = !!state.submission;
   const productsCount = state.products.length;
   const hasProfile = !!state.business.legal_name;
+  const checklistDone = isSelfCertificationComplete(state.selfCertification);
 
   type Slot = {
     key: string;
@@ -42,15 +45,31 @@ export function DocumentsStrip({
       accent: !hasCert,
     },
     {
+      key: "checklist",
+      title: checklistDone ? "Self-certification signed" : "Home self-certification",
+      sub: checklistDone
+        ? "all applicable items certified"
+        : "CDPH kitchen checklist — required",
+      hand: checklistDone ? "certified" : "required for step 4",
+      icon: ClipboardCheck,
+      active: checklistDone,
+      action: onOpenChecklist,
+      accent: hasCert && !checklistDone,
+    },
+    {
       key: "submit",
       title: hasSubmission ? "Application sent" : "Review & sign",
       sub: hasSubmission ? "PDF saved locally" : "the CDPH packet",
-      hand: hasSubmission ? "sent · saved" : "unlocks at step 4",
+      hand: hasSubmission
+        ? "sent · saved"
+        : checklistDone
+          ? "unlocks at step 4"
+          : "finish checklist first",
       icon: hasSubmission ? FileText : Plus,
       active: hasSubmission,
       action: onOpenSubmission,
-      disabled: !hasProfile || productsCount === 0,
-      accent: hasProfile && productsCount > 0 && !hasSubmission,
+      disabled: !hasProfile || productsCount === 0 || !checklistDone,
+      accent: hasProfile && productsCount > 0 && checklistDone && !hasSubmission,
     },
     {
       key: "pricing",

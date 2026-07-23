@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { X, CheckCircle2, Download, Mail } from "lucide-react";
+import { X, CheckCircle2, Download, Mail, AlertTriangle } from "lucide-react";
 import type { CupofsugarState, Submission } from "@/lib/cupofsugar/state";
+import { isSelfCertificationComplete } from "@/lib/cupofsugar/state";
 import { renderApplicationPdf, bytesToDataUrl } from "@/lib/cupofsugar/pdf";
 
 export function SubmissionDialog({
@@ -30,8 +31,11 @@ export function SubmissionDialog({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signature, state.products.length, state.business.legal_name, state.business.address]);
 
+  const checklistDone = isSelfCertificationComplete(state.selfCertification);
+
   async function handleSubmit() {
     if (!signature.trim()) return;
+    if (!checklistDone) return;
     setSubmitting(true);
     const bytes = await renderApplicationPdf(state, signature.trim());
     const url = bytesToDataUrl(bytes);
@@ -83,7 +87,21 @@ export function SubmissionDialog({
                   label="CFPM"
                   value={state.certificate ? "On file" : "Missing"}
                 />
+                <Row
+                  label="Self-certification"
+                  value={checklistDone ? "Signed" : "Outstanding"}
+                />
               </div>
+
+              {!checklistDone && (
+                <div className="mt-4 flex items-start gap-2 rounded-xl bg-cta-red/10 p-3 text-[11px] leading-relaxed text-cta-red ring-1 ring-cta-red/20">
+                  <AlertTriangle className="mt-0.5 size-3.5 shrink-0" />
+                  <span>
+                    Home Self-Certification Checklist is outstanding. Complete
+                    it from your "next steps" before sending the packet.
+                  </span>
+                </div>
+              )}
 
               <label className="mt-6 block text-xs font-semibold uppercase tracking-[0.15em] text-neutral-500">
                 Type your signature
@@ -100,11 +118,15 @@ export function SubmissionDialog({
 
               <button
                 onClick={handleSubmit}
-                disabled={!signature.trim() || submitting}
+                disabled={!signature.trim() || submitting || !checklistDone}
                 className="mt-6 flex items-center justify-center gap-2 rounded-full bg-cta-red px-6 py-3 text-sm font-semibold text-white transition-transform active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <Mail className="size-4" />
-                {submitting ? "Sending..." : "Sign & send to CDPH"}
+                {submitting
+                  ? "Sending..."
+                  : !checklistDone
+                    ? "Finish checklist to send"
+                    : "Sign & send to CDPH"}
               </button>
               <p className="mt-3 text-[11px] leading-relaxed text-neutral-500">
                 This demo simulates the email to{" "}
