@@ -101,7 +101,7 @@ function Home() {
                 currentStage={state.current_stage}
                 completedCount={state.stages_completed.length}
               />
-              <MentorChat key={state.chatResetKey} state={state} onStateChange={(fn) => update(fn)} />
+              <MentorChat key={`${state.chatResetKey}-${state.onboarded}`} state={state} onStateChange={(fn) => update(fn)} />
               <DocumentsStrip
                 state={state}
                 onOpenCertificate={() => setCertOpen(true)}
